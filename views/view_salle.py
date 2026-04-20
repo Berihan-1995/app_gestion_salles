@@ -1,7 +1,5 @@
 # Cette vue affiche le menu et les actions liées aux salles
 
-# Cette vue affiche le menu et les actions liées aux salles
-
 from services.services_salle import ServiceSalle
 
 class ViewSalle:
