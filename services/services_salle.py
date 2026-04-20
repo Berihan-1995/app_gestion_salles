@@ -48,3 +48,10 @@ class ServiceSalle:
                 nouvelles_salles.append(s)
 
         self.dao.sauvegarder_salles(nouvelles_salles)
+
+    def rechercher_salle(self, id_salle):
+        salles = self.dao.charger_salles()
+        for s in salles:
+            if s["id_salle"] == id_salle:
+                return Salle(s["id_salle"], s["nom"], s["capacite"])
+        return None
