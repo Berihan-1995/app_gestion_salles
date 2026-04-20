@@ -16,6 +16,7 @@ class ViewSalle:
         for s in salles:
             print(s)
 
+
     def ajouter_salle(self):
         id_salle = int(input("ID de la salle : "))
         nom = input("Nom de la salle : ")
