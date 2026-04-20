@@ -20,12 +20,14 @@ class ViewSalle:
             print(s)
 
 
+
     def ajouter_salle(self):
         id_salle = int(input("ID de la salle : "))
         nom = input("Nom de la salle : ")
         capacite = int(input("Capacité : "))
         self.service.ajouter_salle(id_salle, nom, capacite)
         print("Salle ajoutée.")
+
 
     def supprimer_salle(self):
         id_salle = int(input("ID de la salle à supprimer : "))
