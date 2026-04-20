@@ -4,6 +4,7 @@ class ViewSalle:
     def __init__(self):
         self.service = ServiceSalle()
 
+
     def afficher_menu(self):
         print("1. Afficher les salles")
         print("2. Ajouter une salle")
