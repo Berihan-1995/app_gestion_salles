@@ -1,3 +1,5 @@
+# ce Programme affiche le menu de gestion des salles
+
 from views.view_salle import ViewSalle
 
 def main():
