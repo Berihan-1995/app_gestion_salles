@@ -6,22 +6,17 @@ class ViewSalle:
     def __init__(self):
         self.service = ServiceSalle()
 
-
     def afficher_menu(self):
         print("1. Afficher les salles")
         print("2. Ajouter une salle")
         print("3. Supprimer une salle")
-        print("4. Quitter")
-
-
-
+        print("4. Rechercher une salle")
+        print("5. Quitter")
 
     def afficher_salles(self):
         salles = self.service.get_all_salles()
         for s in salles:
             print(s)
-
-
 
     def ajouter_salle(self):
         id_salle = int(input("ID de la salle : "))
@@ -30,8 +25,15 @@ class ViewSalle:
         self.service.ajouter_salle(id_salle, nom, capacite)
         print("Salle ajoutée.")
 
-
     def supprimer_salle(self):
         id_salle = int(input("ID de la salle à supprimer : "))
         self.service.supprimer_salle(id_salle)
         print("Salle supprimée.")
+
+    def rechercher_salle(self):
+        id_salle = int(input("ID de la salle à rechercher : "))
+        salle = self.service.rechercher_salle(id_salle)
+        if salle:
+            print(salle)
+        else:
+            print("Aucune salle trouvée.")
