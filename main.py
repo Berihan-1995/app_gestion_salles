@@ -1,4 +1,4 @@
-# ce Programme affiche le menu de gestion des salles
+# Ce programme affiche le menu de gestion des salles
 
 from views.view_salle import ViewSalle
 
@@ -27,4 +27,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
