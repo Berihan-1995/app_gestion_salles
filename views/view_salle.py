@@ -11,6 +11,7 @@ class ViewSalle:
         print("3. Supprimer une salle")
         print("4. Quitter")
 
+
     def afficher_salles(self):
         salles = self.service.get_all_salles()
         for s in salles:
