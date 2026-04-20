@@ -1,4 +1,3 @@
-q
 
 class Salle:
     def __init__(self, code: str, description: str, categorie: str, capacite: int):
@@ -6,6 +5,7 @@ class Salle:
         self.description = description
         self.categorie = categorie
         self.capacite = capacite
+
 
     def afficher_infos(self):
         print(f"Code : {self.code}")
