@@ -1,5 +1,7 @@
 import json
 
+# Ce fichier fait lire et écrire les salles dans le fichier JSON
+
 class DaoSalle:
     def __init__(self, config_path="data/config.json"):
         self.config_path = config_path
