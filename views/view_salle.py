@@ -1,5 +1,7 @@
 # Cette vue affiche le menu et les actions liées aux salles
 
+# Cette vue affiche le menu et les actions liées aux salles
+
 from services.services_salle import ServiceSalle
 
 class ViewSalle:
@@ -10,8 +12,9 @@ class ViewSalle:
         print("1. Afficher les salles")
         print("2. Ajouter une salle")
         print("3. Supprimer une salle")
-        print("4. Rechercher une salle")
-        print("5. Quitter")
+        print("4. Modifier une salle")
+        print("5. Rechercher une salle")
+        print("6. Quitter")
 
     def afficher_salles(self):
         salles = self.service.get_all_salles()
@@ -29,6 +32,13 @@ class ViewSalle:
         id_salle = int(input("ID de la salle à supprimer : "))
         self.service.supprimer_salle(id_salle)
         print("Salle supprimée.")
+
+    def modifier_salle(self):
+        id_salle = int(input("ID de la salle à modifier : "))
+        nom = input("Nouveau nom : ")
+        capacite = int(input("Nouvelle capacité : "))
+        self.service.modifier_salle(id_salle, nom, capacite)
+        print("Salle modifiée.")
 
     def rechercher_salle(self):
         id_salle = int(input("ID de la salle à rechercher : "))
