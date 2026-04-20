@@ -7,3 +7,6 @@ class Salle:
     def __str__(self):
         return f"Salle(id={self.id_salle}, nom='{self.nom}', capacite={self.capacite})"
 
+    def __str__(self):
+        return f"Salle {self.id_salle} - {self.nom} ({self.capacite} places)"
+
