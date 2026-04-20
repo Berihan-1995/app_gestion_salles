@@ -1,6 +1,5 @@
 # Service permettant de gérer les salles
 
-
 from data.dao_salle import DaoSalle
 from models.salle import Salle
 
@@ -8,10 +7,7 @@ class ServiceSalle:
     def __init__(self):
         self.dao = DaoSalle()
 
-
-
     # Cette méthode retourne toutes les salles depuis le DAO
-
     def get_all_salles(self):
         data = self.dao.charger_salles()
         salles = []
@@ -55,3 +51,15 @@ class ServiceSalle:
             if s["id_salle"] == id_salle:
                 return Salle(s["id_salle"], s["nom"], s["capacite"])
         return None
+
+    def modifier_salle(self, id_salle, nouveau_nom, nouvelle_capacite):
+        salles = self.dao.charger_salles()
+
+        for s in salles:
+            if s["id_salle"] == id_salle:
+                s["nom"] = nouveau_nom
+                s["capacite"] = nouvelle_capacite
+                self.dao.sauvegarder_salles(salles)
+                return True
+
+        return False
