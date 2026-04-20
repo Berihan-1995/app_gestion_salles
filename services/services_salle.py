@@ -1,65 +1,45 @@
-# Service permettant de gérer les salles
+# services/service_salle.py
 
-from data.dao_salle import DaoSalle
+from data.dao_salle import DataSalle
 from models.salle import Salle
 
 class ServiceSalle:
+
     def __init__(self):
-        self.dao = DaoSalle()
+        self.dao_salle = DataSalle()
 
-    # Cette méthode retourne toutes les salles depuis le DAO
-    def get_all_salles(self):
-        data = self.dao.charger_salles()
-        salles = []
-        for s in data:
-            salle = Salle(s["id_salle"], s["nom"], s["capacite"])
-            salles.append(salle)
-        return salles
+    def ajouter_salle(self, salle: Salle):
+        # Vérifier que toutes les données sont présentes
+        if not salle.code or not salle.description or not salle.categorie or salle.capacite is None:
+            return False, "Toutes les informations doivent être fournies."
 
-    def ajouter_salle(self, id_salle, nom, capacite):
-        salles = self.dao.charger_salles()
+        # Vérifier capacité >= 1
+        if salle.capacite < 1:
+            return False, "La capacité doit être >= 1."
 
-        for s in salles:
-            if s["id_salle"] == id_salle:
-                raise ValueError("ID déjà utilisé")
+        # Appeler le DAO
+        self.dao_salle.insert_salle(salle)
+        return True, "Salle ajoutée avec succès."
 
-        if capacite <= 0:
-            raise ValueError("Capacité invalide")
+    def modifier_salle(self, salle: Salle):
+        # Vérifier que toutes les données sont présentes
+        if not salle.code or not salle.description or not salle.categorie or salle.capacite is None:
+            return False, "Toutes les informations doivent être fournies."
 
-        nouvelle_salle = {
-            "id_salle": id_salle,
-            "nom": nom,
-            "capacite": capacite
-        }
+        # Vérifier capacité >= 1
+        if salle.capacite < 1:
+            return False, "La capacité doit être >= 1."
 
-        salles.append(nouvelle_salle)
-        self.dao.sauvegarder_salles(salles)
+        # Appeler le DAO
+        self.dao_salle.update_salle(salle)
+        return True, "Salle modifiée avec succès."
 
-    def supprimer_salle(self, id_salle):
-        salles = self.dao.charger_salles()
-        nouvelles_salles = []
+    def supprimer_salle(self, code: str):
+        self.dao_salle.delete_salle(code)
+        return True, "Salle supprimée."
 
-        for s in salles:
-            if s["id_salle"] != id_salle:
-                nouvelles_salles.append(s)
+    def rechercher_salle(self, code: str):
+        return self.dao_salle.get_salle(code)
 
-        self.dao.sauvegarder_salles(nouvelles_salles)
-
-    def rechercher_salle(self, id_salle):
-        salles = self.dao.charger_salles()
-        for s in salles:
-            if s["id_salle"] == id_salle:
-                return Salle(s["id_salle"], s["nom"], s["capacite"])
-        return None
-
-    def modifier_salle(self, id_salle, nouveau_nom, nouvelle_capacite):
-        salles = self.dao.charger_salles()
-
-        for s in salles:
-            if s["id_salle"] == id_salle:
-                s["nom"] = nouveau_nom
-                s["capacite"] = nouvelle_capacite
-                self.dao.sauvegarder_salles(salles)
-                return True
-
-        return False
+    def recuperer_salles(self):
+        return self.dao_salle.get_salles()
