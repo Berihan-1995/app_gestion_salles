@@ -8,6 +8,10 @@ class ServiceSalle:
     def __init__(self):
         self.dao = DaoSalle()
 
+
+
+    # Cette méthode retourne toutes les salles depuis le DAO
+
     def get_all_salles(self):
         data = self.dao.charger_salles()
         salles = []
