@@ -1,3 +1,5 @@
+# cette classe Salle représente une salle avec son nom et sa capacité
+
 class Salle:
     def __init__(self, id_salle: int, nom: str, capacite: int):
         self.id_salle = id_salle
